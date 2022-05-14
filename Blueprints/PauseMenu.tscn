@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/open_sans_regular_heading.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Resources/open_sans_regular_text.tres" type="DynamicFont" id=2]
+
+[node name="PauseMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 100.0
+custom_constants/separation = 25
+
+[node name="PauseMenu" type="Label" parent="Panel/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 35.0
+custom_fonts/font = ExtResource( 1 )
+text = "Pause Menu"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+margin_left = 400.0
+margin_top = 80.0
+margin_right = 624.0
+margin_bottom = 207.0
+custom_constants/separation = 30
+
+[node name="ContinueButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+margin_right = 224.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "Continue"
+
+[node name="OptionsButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+margin_top = 59.0
+margin_right = 224.0
+margin_bottom = 88.0
+custom_fonts/font = ExtResource( 2 )
+text = "Options"
+
+[node name="ExitButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+margin_top = 118.0
+margin_right = 224.0
+margin_bottom = 147.0
+custom_fonts/font = ExtResource( 2 )
+text = "Exit"
