@@ -9,13 +9,16 @@ anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -392, -15 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -312.0
 margin_top = 100.0
+margin_right = 312.0
+margin_bottom = 500.0
 custom_constants/separation = 25
 
 [node name="OptionsMenu" type="Label" parent="VBoxContainer"]
-margin_right = 1024.0
+margin_right = 624.0
 margin_bottom = 35.0
 custom_fonts/font = ExtResource( 1 )
 text = "Options Menu"
@@ -23,21 +26,40 @@ align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 60.0
-margin_right = 1024.0
-margin_bottom = 83.0
+margin_right = 624.0
+margin_bottom = 153.0
 custom_constants/separation = 30
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_right = 1024.0
+margin_right = 624.0
 margin_bottom = 23.0
+custom_constants/separation = 100
 
 [node name="Volume" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 58.0
 margin_bottom = 23.0
 custom_fonts/font = ExtResource( 2 )
 text = "Volume"
+valign = 1
 
 [node name="VolumeSlider" type="HSlider" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 62.0
-margin_right = 78.0
+margin_left = 158.0
+margin_right = 624.0
 margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/VBoxContainer"]
+margin_top = 53.0
+margin_right = 624.0
+margin_bottom = 93.0
+custom_fonts/font = ExtResource( 2 )
+text = "Mute"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+margin_left = 272.0
+margin_top = 178.0
+margin_right = 351.0
+margin_bottom = 207.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 2 )
+text = "    Back    "
