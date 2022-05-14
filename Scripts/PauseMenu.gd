@@ -6,6 +6,7 @@ onready var exit_button : Button = $Panel/PauseMenuContent/VBoxContainer/ExitBut
 onready var music_volume_slider: Slider = $Panel/OptionsMenuContent/VBoxContainer/VBoxContainer/MusicVolume/VolumeSlider
 onready var sound_volume_slider: Slider = $Panel/OptionsMenuContent/VBoxContainer/VBoxContainer/SoundVolume/VolumeSlider
 onready var mute_button: Button = $Panel/OptionsMenuContent/VBoxContainer/VBoxContainer/MuteButton
+onready var audio = $Audio
 
 var last_music_volume = 1
 var last_sound_volume = 1
@@ -27,17 +28,20 @@ func _process(delta):
 		toggle_pause()
 
 func _on_OptionsButton_pressed():
+	audio.play()
 	pause_menu_content.visible = false
 	options_menu_content.visible = true
 
 
 
 func _on_OptionsMenuBackButton_pressed():
+	audio.play()
 	pause_menu_content.visible = true
 	options_menu_content.visible = false
 
 
 func _on_ExitButton_pressed():
+	audio.play()
 	get_tree().quit()
 
 func toggle_pause():
@@ -56,10 +60,12 @@ func resume_game():
 
 
 func _on_ContinueButton_pressed():
+	audio.play()
 	resume_game()
 
 
 func _on_MuteButton_toggled(button_pressed:bool):
+	audio.play()
 	if button_pressed:
 		mute()
 	else:
