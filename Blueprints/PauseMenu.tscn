@@ -1,51 +1,59 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Resources/open_sans_regular_heading.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Resources/open_sans_regular_text.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scripts/PauseMenu.gd" type="Script" id=3]
 
 [node name="PauseMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="PauseMenuContent" type="VBoxContainer" parent="Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -312.0
 margin_top = 100.0
+margin_right = 312.0
+margin_bottom = 500.0
 custom_constants/separation = 25
 
-[node name="PauseMenu" type="Label" parent="Panel/VBoxContainer"]
-margin_right = 1024.0
+[node name="PauseMenu" type="Label" parent="Panel/PauseMenuContent"]
+margin_right = 624.0
 margin_bottom = 35.0
 custom_fonts/font = ExtResource( 1 )
 text = "Pause Menu"
 align = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/PauseMenuContent"]
 margin_top = 60.0
-margin_right = 1024.0
+margin_right = 624.0
 margin_bottom = 207.0
 custom_constants/separation = 30
+alignment = 1
 
-[node name="ContinueButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
-margin_right = 1024.0
+[node name="ContinueButton" type="Button" parent="Panel/PauseMenuContent/VBoxContainer"]
+margin_right = 624.0
 margin_bottom = 29.0
 custom_fonts/font = ExtResource( 2 )
 text = "Continue"
 
-[node name="OptionsButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="Panel/PauseMenuContent/VBoxContainer"]
 margin_top = 59.0
-margin_right = 1024.0
+margin_right = 624.0
 margin_bottom = 88.0
 custom_fonts/font = ExtResource( 2 )
 text = "Options"
 
-[node name="ExitButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="Panel/PauseMenuContent/VBoxContainer"]
 margin_top = 118.0
-margin_right = 1024.0
+margin_right = 624.0
 margin_bottom = 147.0
 custom_fonts/font = ExtResource( 2 )
 text = "Exit"
+
+[connection signal="pressed" from="Panel/PauseMenuContent/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
