@@ -4,3 +4,7 @@ extends Node
 
 var volume = 100
 var muted = false
+
+
+func _ready():
+	pass
