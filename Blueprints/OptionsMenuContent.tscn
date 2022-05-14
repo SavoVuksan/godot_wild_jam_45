@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/open_sans_regular_heading.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Resources/open_sans_regular_text.tres" type="DynamicFont" id=2]
+
+[node name="OptionsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -392, -15 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -312.0
+margin_top = 100.0
+margin_right = 312.0
+margin_bottom = 500.0
+custom_constants/separation = 25
+
+[node name="OptionsMenu" type="Label" parent="VBoxContainer"]
+margin_right = 624.0
+margin_bottom = 35.0
+custom_fonts/font = ExtResource( 1 )
+text = "Options Menu"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 60.0
+margin_right = 624.0
+margin_bottom = 206.0
+custom_constants/separation = 30
+
+[node name="MusicVolume" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_right = 624.0
+margin_bottom = 23.0
+custom_constants/separation = 100
+
+[node name="MusicVolume" type="Label" parent="VBoxContainer/VBoxContainer/MusicVolume"]
+margin_right = 118.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 2 )
+text = "Music Volume   "
+valign = 1
+
+[node name="VolumeSlider" type="HSlider" parent="VBoxContainer/VBoxContainer/MusicVolume"]
+margin_left = 218.0
+margin_right = 624.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SoundVolume" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 53.0
+margin_right = 624.0
+margin_bottom = 76.0
+custom_constants/separation = 100
+
+[node name="SoundsVolume" type="Label" parent="VBoxContainer/VBoxContainer/SoundVolume"]
+margin_right = 119.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 2 )
+text = "Sounds Volume"
+valign = 1
+
+[node name="VolumeSlider" type="HSlider" parent="VBoxContainer/VBoxContainer/SoundVolume"]
+margin_left = 219.0
+margin_right = 624.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MuteButton" type="CheckButton" parent="VBoxContainer/VBoxContainer"]
+margin_top = 106.0
+margin_right = 624.0
+margin_bottom = 146.0
+custom_fonts/font = ExtResource( 2 )
+text = "Mute"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+margin_left = 272.0
+margin_top = 231.0
+margin_right = 351.0
+margin_bottom = 260.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 2 )
+text = "    Back    "

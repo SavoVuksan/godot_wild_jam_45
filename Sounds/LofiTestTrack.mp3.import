@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/LofiTestTrack.mp3-0fd0b18de85bcc4deda2f06833a5b9be.mp3str"
+
+[deps]
+
+source_file="res://Sounds/LofiTestTrack.mp3"
+dest_files=[ "res://.import/LofiTestTrack.mp3-0fd0b18de85bcc4deda2f06833a5b9be.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

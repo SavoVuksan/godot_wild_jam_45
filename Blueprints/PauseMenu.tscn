@@ -1,10 +1,11 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Resources/open_sans_regular_heading.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Resources/open_sans_regular_text.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Blueprints/PauseMenuContent.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Blueprints/OptionsMenuContent.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/PauseMenu.gd" type="Script" id=3]
 
 [node name="PauseMenu" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
@@ -13,47 +14,18 @@ script = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="PauseMenuContent" type="VBoxContainer" parent="Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -312.0
-margin_top = 100.0
-margin_right = 312.0
-margin_bottom = 500.0
-custom_constants/separation = 25
+[node name="PauseMenuContent" parent="Panel" instance=ExtResource( 1 )]
 
-[node name="PauseMenu" type="Label" parent="Panel/PauseMenuContent"]
-margin_right = 624.0
-margin_bottom = 35.0
-custom_fonts/font = ExtResource( 1 )
-text = "Pause Menu"
-align = 1
+[node name="OptionsMenuContent" parent="Panel" instance=ExtResource( 2 )]
+visible = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/PauseMenuContent"]
-margin_top = 60.0
-margin_right = 624.0
-margin_bottom = 207.0
-custom_constants/separation = 30
-alignment = 1
-
-[node name="ContinueButton" type="Button" parent="Panel/PauseMenuContent/VBoxContainer"]
-margin_right = 624.0
-margin_bottom = 29.0
-custom_fonts/font = ExtResource( 2 )
-text = "Continue"
-
-[node name="OptionsButton" type="Button" parent="Panel/PauseMenuContent/VBoxContainer"]
-margin_top = 59.0
-margin_right = 624.0
-margin_bottom = 88.0
-custom_fonts/font = ExtResource( 2 )
-text = "Options"
-
-[node name="ExitButton" type="Button" parent="Panel/PauseMenuContent/VBoxContainer"]
-margin_top = 118.0
-margin_right = 624.0
-margin_bottom = 147.0
-custom_fonts/font = ExtResource( 2 )
-text = "Exit"
-
+[connection signal="pressed" from="Panel/PauseMenuContent/VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="Panel/PauseMenuContent/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="Panel/PauseMenuContent/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="value_changed" from="Panel/OptionsMenuContent/VBoxContainer/VBoxContainer/MusicVolume/VolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
+[connection signal="value_changed" from="Panel/OptionsMenuContent/VBoxContainer/VBoxContainer/SoundVolume/VolumeSlider" to="." method="_on_SoundVolumeSlider_value_changed"]
+[connection signal="toggled" from="Panel/OptionsMenuContent/VBoxContainer/VBoxContainer/MuteButton" to="." method="_on_MuteButton_toggled"]
+[connection signal="pressed" from="Panel/OptionsMenuContent/VBoxContainer/BackButton" to="." method="_on_OptionsMenuBackButton_pressed"]
+
+[editable path="Panel/PauseMenuContent"]
+[editable path="Panel/OptionsMenuContent"]
