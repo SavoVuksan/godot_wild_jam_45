@@ -1,0 +1,180 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Sprites/Fantasy Cave/mainlev_build.png" type="Texture" id=1]
+[ext_resource path="res://Blueprints/Drill.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Blueprints/Hook.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/HBoxContainer.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/PlayerController.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=6]
+
+[sub_resource type="PhysicsMaterial" id=3]
+friction = 0.0
+rough = true
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 32, 32, 0, 32, 32, 16, 32, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 16, 32, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 0, 16, 32, 16, 32, 48, 0, 48 )
+
+[sub_resource type="TileSet" id=7]
+0/name = "mainlev_build.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 336, 352, 32, 48 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 1, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "mainlev_build.png 1"
+1/texture = ExtResource( 1 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 384, 352, 32, 48 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 2 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+
+[node name="SplitScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 4 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="HBoxContainer"]
+margin_right = 510.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="HBoxContainer/ViewportContainer"]
+size = Vector2( 510, 600 )
+size_override_stretch = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Hook" type="RigidBody2D" parent="HBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 3 )]
+position = Vector2( -184, 34 )
+mode = 2
+physics_material_override = SubResource( 3 )
+gravity_scale = 8.0
+script = ExtResource( 5 )
+player_controller = 2
+movement_speed = 300.0
+jump_height = 50.0
+
+[node name="Drill" type="RigidBody2D" parent="HBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 2 )]
+position = Vector2( 151, -51 )
+mode = 2
+physics_material_override = SubResource( 3 )
+gravity_scale = 8.0
+script = ExtResource( 5 )
+movement_speed = 300.0
+jump_height = 50.0
+
+[node name="TileMap" type="TileMap" parent="HBoxContainer/ViewportContainer/Viewport"]
+tile_set = SubResource( 7 )
+cell_size = Vector2( 16, 16 )
+show_collision = true
+collision_friction = 0.0
+format = 1
+tile_data = PoolIntArray( -65523, 0, 65536, -65522, 0, 65537, -65521, 0, 65536, -65520, 0, 65537, -65519, 0, 65536, -65518, 0, 65537, -65517, 0, 65536, -65516, 0, 65537, -65515, 0, 65536, -65514, 0, 65537, -65513, 0, 65536, -65512, 0, 65537, -65511, 0, 65536, -65510, 0, 65537, -65509, 0, 65536, -65508, 0, 65537, -65507, 0, 65536, -65506, 0, 65537, -65505, 0, 65536, -65504, 0, 65537, -65503, 0, 65536, -65502, 0, 65537, -65501, 0, 65536, -65500, 0, 65537, -65499, 0, 65536, -65498, 0, 65537, 13, 0, 131072, 14, 0, 131073, 15, 0, 131072, 16, 0, 131073, 17, 0, 131072, 18, 0, 131073, 19, 0, 131072, 20, 0, 131073, 21, 0, 131072, 22, 0, 131073, 23, 0, 131072, 24, 0, 131073, 25, 0, 131072, 26, 0, 131073, 27, 0, 131072, 28, 0, 131073, 29, 0, 131072, 30, 0, 131073, 31, 0, 131072, 32, 0, 131073, 33, 0, 131072, 34, 0, 131073, 35, 0, 131072, 36, 0, 131073, 37, 0, 131072, 38, 0, 131073, 196612, 0, 65536, 196613, 0, 65537, 196614, 0, 65536, 196615, 0, 65537, 196616, 0, 65536, 196617, 0, 65537, 196618, 0, 65536, 196619, 0, 65537, 196620, 0, 65536, 196621, 0, 65537, 196622, 0, 65536, 196623, 0, 65537, 196624, 0, 65536, 196625, 0, 65537, 196626, 0, 65536, 196627, 0, 65537, 196628, 0, 65536, 196629, 0, 65537, 196630, 0, 65536, 196631, 0, 65537, 196632, 0, 65536, 196633, 0, 65537, 196634, 0, 65536, 196635, 0, 65537, 196636, 0, 65536, 196637, 0, 65537, 262148, 0, 131072, 262149, 0, 131073, 262150, 0, 131072, 262151, 0, 131073, 262152, 0, 131072, 262153, 0, 131073, 262154, 0, 131072, 262155, 0, 131073, 262156, 0, 131072, 262157, 0, 131073, 262158, 0, 131072, 262159, 0, 131073, 262160, 0, 131072, 262161, 0, 131073, 262162, 0, 131072, 262163, 0, 131073, 262164, 0, 131072, 262165, 0, 131073, 262166, 0, 131072, 262167, 0, 131073, 262168, 0, 131072, 262169, 0, 131073, 262170, 0, 131072, 262171, 0, 131073, 262172, 0, 131072, 262173, 0, 131073, 524250, 0, 65536, 524251, 0, 65537, 524252, 0, 65536, 524253, 0, 65537, 524254, 0, 65536, 524255, 0, 65537, 524256, 0, 65536, 524257, 0, 65537, 524258, 0, 65536, 524259, 0, 65537, 524260, 0, 65536, 524261, 0, 65537, 524262, 0, 65536, 524263, 0, 65537, 524264, 0, 65536, 524265, 0, 65537, 524266, 0, 65536, 524267, 0, 65537, 524268, 0, 65536, 524269, 0, 65537, 524270, 0, 65536, 524271, 0, 65537, 524272, 0, 65536, 524273, 0, 65537, 524274, 0, 65536, 524275, 0, 65537, 524276, 0, 65536, 524277, 0, 65537, 524278, 0, 65536, 524279, 0, 65537, 524280, 0, 65536, 524281, 0, 65537, 524282, 0, 65536, 524283, 0, 65537, 524284, 0, 65536, 524285, 0, 65537, 524286, 0, 65536, 524287, 0, 65537, 458752, 0, 65536, 458753, 0, 65537, 458754, 0, 65536, 458755, 0, 65537, 458756, 0, 65536, 458757, 0, 65537, 458758, 0, 65536, 458759, 0, 65537, 458760, 0, 65536, 458761, 0, 65537, 458762, 0, 65536, 458763, 0, 65537, 458764, 0, 65536, 458765, 0, 65537, 458766, 0, 65536, 458767, 0, 65537, 458768, 0, 65536, 458769, 0, 65537, 458770, 0, 65536, 458771, 0, 65537, 458772, 0, 65536, 458773, 0, 65537, 458774, 0, 65536, 458775, 0, 65537, 458776, 0, 65536, 458777, 0, 65537, 458778, 0, 65536, 458779, 0, 65537, 458780, 0, 65536, 458781, 0, 65537, 458782, 0, 65536, 458783, 0, 65537, 458784, 0, 65536, 458785, 0, 65537, 458786, 0, 65536, 458787, 0, 65537, 458788, 0, 65536, 458789, 0, 65537, 458790, 0, 65536, 458791, 0, 65537, 589786, 0, 131072, 589787, 0, 131073, 589788, 0, 131072, 589789, 0, 131073, 589790, 0, 131072, 589791, 0, 131073, 589792, 0, 131072, 589793, 0, 131073, 589794, 0, 131072, 589795, 0, 131073, 589796, 0, 131072, 589797, 0, 131073, 589798, 0, 131072, 589799, 0, 131073, 589800, 0, 131072, 589801, 0, 131073, 589802, 0, 131072, 589803, 0, 131073, 589804, 0, 131072, 589805, 0, 131073, 589806, 0, 131072, 589807, 0, 131073, 589808, 0, 131072, 589809, 0, 131073, 589810, 0, 131072, 589811, 0, 131073, 589812, 0, 131072, 589813, 0, 131073, 589814, 0, 131072, 589815, 0, 131073, 589816, 0, 131072, 589817, 0, 131073, 589818, 0, 131072, 589819, 0, 131073, 589820, 0, 131072, 589821, 0, 131073, 589822, 0, 131072, 589823, 0, 131073, 524288, 0, 131072, 524289, 0, 131073, 524290, 0, 131072, 524291, 0, 131073, 524292, 0, 131072, 524293, 0, 131073, 524294, 0, 131072, 524295, 0, 131073, 524296, 0, 131072, 524297, 0, 131073, 524298, 0, 131072, 524299, 0, 131073, 524300, 0, 131072, 524301, 0, 131073, 524302, 0, 131072, 524303, 0, 131073, 524304, 0, 131072, 524305, 0, 131073, 524306, 0, 131072, 524307, 0, 131073, 524308, 0, 131072, 524309, 0, 131073, 524310, 0, 131072, 524311, 0, 131073, 524312, 0, 131072, 524313, 0, 131073, 524314, 0, 131072, 524315, 0, 131073, 524316, 0, 131072, 524317, 0, 131073, 524318, 0, 131072, 524319, 0, 131073, 524320, 0, 131072, 524321, 0, 131073, 524322, 0, 131072, 524323, 0, 131073, 524324, 0, 131072, 524325, 0, 131073, 524326, 0, 131072, 524327, 0, 131073 )
+
+[node name="Camera" type="Camera2D" parent="HBoxContainer/ViewportContainer/Viewport"]
+offset = Vector2( 0, -80 )
+current = true
+zoom = Vector2( 0.7, 0.7 )
+smoothing_enabled = true
+script = ExtResource( 6 )
+_target = NodePath("../Hook")
+
+[node name="ViewportContainer2" type="ViewportContainer" parent="HBoxContainer"]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="HBoxContainer/ViewportContainer2"]
+size = Vector2( 510, 600 )
+size_override_stretch = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Camera" type="Camera2D" parent="HBoxContainer/ViewportContainer2/Viewport"]
+offset = Vector2( 0, -80 )
+current = true
+zoom = Vector2( 0.7, 0.7 )
+smoothing_enabled = true
+script = ExtResource( 6 )
+_target = NodePath("../../../ViewportContainer/Viewport/Drill")
+
+[connection signal="velocity_changed" from="HBoxContainer/ViewportContainer/Viewport/Hook" to="HBoxContainer/ViewportContainer/Viewport/Hook/StateManager" method="_on_PlayerController_velocity_changed"]
+[connection signal="velocity_changed" from="HBoxContainer/ViewportContainer/Viewport/Drill" to="HBoxContainer/ViewportContainer/Viewport/Drill/StateManager" method="_on_PlayerController_velocity_changed"]

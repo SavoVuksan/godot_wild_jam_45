@@ -85,4 +85,4 @@ player_controller = 2
 
 [node name="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 1 )
-frame = 15
+frame = 22
