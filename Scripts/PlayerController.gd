@@ -1,4 +1,5 @@
 extends RigidBody2D
+class_name PlayerController
 
 signal velocity_changed(velocity)
 
