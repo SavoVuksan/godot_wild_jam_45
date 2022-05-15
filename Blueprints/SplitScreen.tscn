@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Sprites/Fantasy Cave/mainlev_build.png" type="Texture" id=1]
 [ext_resource path="res://Blueprints/Drill.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Blueprints/Hook.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/HBoxContainer.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/PlayerController.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=6]
 
 [sub_resource type="PhysicsMaterial" id=3]
@@ -119,24 +118,13 @@ size_override_stretch = true
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="Hook" type="RigidBody2D" parent="HBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 3 )]
+[node name="Hook" parent="HBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 3 )]
 position = Vector2( -184, 34 )
-mode = 2
 physics_material_override = SubResource( 3 )
-gravity_scale = 8.0
-script = ExtResource( 5 )
-player_controller = 2
-movement_speed = 300.0
-jump_height = 50.0
 
-[node name="Drill" type="RigidBody2D" parent="HBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 2 )]
+[node name="Drill" parent="HBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 2 )]
 position = Vector2( 151, -51 )
-mode = 2
 physics_material_override = SubResource( 3 )
-gravity_scale = 8.0
-script = ExtResource( 5 )
-movement_speed = 300.0
-jump_height = 50.0
 
 [node name="TileMap" type="TileMap" parent="HBoxContainer/ViewportContainer/Viewport"]
 tile_set = SubResource( 7 )
@@ -175,6 +163,3 @@ zoom = Vector2( 0.7, 0.7 )
 smoothing_enabled = true
 script = ExtResource( 6 )
 _target = NodePath("../../../ViewportContainer/Viewport/Drill")
-
-[connection signal="velocity_changed" from="HBoxContainer/ViewportContainer/Viewport/Hook" to="HBoxContainer/ViewportContainer/Viewport/Hook/StateManager" method="_on_PlayerController_velocity_changed"]
-[connection signal="velocity_changed" from="HBoxContainer/ViewportContainer/Viewport/Drill" to="HBoxContainer/ViewportContainer/Viewport/Drill/StateManager" method="_on_PlayerController_velocity_changed"]
